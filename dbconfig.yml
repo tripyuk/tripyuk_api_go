@@ -1,0 +1,9 @@
+development:
+  dialect: mysql
+  datasource: root:password@tcp(127.0.0.1:3306)/tripyuk_db?tls=skip-verify&autocommit=true&parseTime=true
+  dir: src/infra/mysql/migrations
+
+production:
+  dialect: mysql
+  datasource: root:password@tcp(127.0.0.1:3306)/tripyuk_db?tls=skip-verify&autocommit=true&parseTime=true
+  dir: src/infra/mysql/migrations
