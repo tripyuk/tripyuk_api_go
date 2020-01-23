@@ -1,11 +1,10 @@
 package mysql
 
 import (
-	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
-	"research/tripyuk/src/common/config"
+	"tripyuk/src/common/config"
 )
 
 // DBFactory struct

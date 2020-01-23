@@ -10,10 +10,19 @@ type Configuration struct {
 	Database DatabaseConfiguration
 }
 
+//var (
+//	config       *Config
+//	cfgLock      sync.Once
+//	cfgType      string = "yml"
+//	cfgPath      string = "."
+//	cfgName      string = ".env"
+//	cfgEnvPrefix string = "AGT"
+//)
+
 // New create new configuration object
 func New() (*Configuration, error) {
-	viper.SetConfigName(".env")
-	viper.AddConfigPath("../")
+	viper.SetConfigName("env")
+	viper.AddConfigPath(".")
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Error reading config file, %s", err)
 	}
