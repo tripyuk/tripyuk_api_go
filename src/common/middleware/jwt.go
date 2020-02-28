@@ -1,11 +1,12 @@
 package middleware
 
 import (
+	"time"
+	"tripyuk_api_go/src/module/model"
+
 	jwt "github.com/appleboy/gin-jwt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
-	"time"
-	"tripyuk/src/module/model"
 )
 
 var identityKey = "id"
@@ -79,7 +80,7 @@ func DefaultMW(db *gorm.DB) (*jwt.GinJWTMiddleware, error) {
 func HelloHandler(c *gin.Context) {
 	claims := jwt.ExtractClaims(c)
 	c.JSON(200, gin.H{
-		"email":   claims[identityKey],
-		"text":     "Hello World.",
+		"email": claims[identityKey],
+		"text":  "Hello World.",
 	})
 }

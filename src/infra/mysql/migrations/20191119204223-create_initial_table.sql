@@ -34,11 +34,13 @@ CREATE TABLE IF NOT EXISTS `agents` (
 
 CREATE TABLE `countries` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sortname` varchar(10) NOT NULL DEFAULT '',
   `name` varchar(200) NOT NULL DEFAULT '',
+  `phonecode` VARCHAR(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `provinces` (
+CREATE TABLE `states` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL DEFAULT '',
   `country_id` int(10) NOT NULL DEFAULT '0',
@@ -49,30 +51,30 @@ CREATE TABLE `provinces` (
 CREATE TABLE `cities` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL DEFAULT '',
-  `province_id` int(10) NOT NULL DEFAULT '0',
+  `state_id` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `idx_cities_province_id` (`province_id`)
+  KEY `idx_cities_state_id` (`state_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `locations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL DEFAULT '',
   `country_id` int(10) NOT NULL DEFAULT '0',
-  `province_id` int(10) NOT NULL DEFAULT '0',
+  `state_id` int(10) NOT NULL DEFAULT '0',
   `cities_id` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `idx_locations_country_id` (`country_id`),
-  KEY `idx_locations_province_id` (`province_id`),
+  KEY `idx_locations_state_id` (`state_id`),
   KEY `idx_locations_cities_id` (`cities_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `agent_trips` (
+CREATE TABLE IF NOT EXISTS `agents_trips` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `agent_id` int(10) NOT NULL DEFAULT '0',
   `country_id` int(10) NOT NULL DEFAULT '0',
-  `province_id` int(10) NOT NULL DEFAULT '0',
+  `state_id` int(10) NOT NULL DEFAULT '0',
   `cities_id` int(10) NOT NULL DEFAULT '0',
   `location_id` int(10) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -83,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `agent_trips` (
   KEY `idx_trips_name` (`name`),
   KEY `idx_trips_agent_id` (`agent_id`),
   KEY `idx_trips_country_id` (`country_id`),
-  KEY `idx_trips_province_id` (`province_id`),
+  KEY `idx_trips_state_id` (`state_id`),
   KEY `idx_trips_cities_id` (`cities_id`),
   KEY `idx_trips_location_id` (`location_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

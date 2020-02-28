@@ -1,12 +1,13 @@
 package router
 
 import (
+	"log"
+	"net/http"
+	"tripyuk_api_go/src/common/middleware"
+
 	jwt "github.com/appleboy/gin-jwt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
-	"log"
-	"net/http"
-	"tripyuk/src/common/middleware"
 )
 
 func setupRouter() *gin.Engine {
@@ -47,7 +48,7 @@ func RouteInit(db *gorm.DB, port string) {
 		log.Fatal(err)
 	}
 
-	err = r.Run(":"+port)
+	err = r.Run(":" + port)
 	if err != nil {
 		log.Fatal(err)
 	}

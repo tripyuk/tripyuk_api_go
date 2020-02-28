@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"tripyuk/src/common/config"
-	"tripyuk/src/infra/mysql"
-	"tripyuk/src/router"
+	"tripyuk_api_go/src/common/config"
+	"tripyuk_api_go/src/infra/mysql"
+	"tripyuk_api_go/src/router"
 )
 
 var db = make(map[string]string)
